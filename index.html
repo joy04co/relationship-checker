@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Propose Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f9d5e5, #fceabb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .container, .popup {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1 {
+      color: #d14e72;
+      margin-bottom: 10px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    input, select {
+      padding: 10px;
+      width: 100%;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+
+    button {
+      background: #ff4081;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #e91e63;
+    }
+
+    .popup h2 {
+      color: #4a148c;
+      font-size: 24px;
+    }
+
+    .popup p {
+      font-size: 18px;
+      margin-top: 15px;
+    }
+
+    .inspiration {
+      font-size: 16px;
+      color: #555;
+      margin-top: 20px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Form Container -->
+  <div class="container active" id="formSection">
+    <h1>STABILITY IN RELATONSHIP</h1>
+    <div class="input-group">
+      <label>Her/His Name:</label>
+      <input type="text" id="herNameInput" placeholder="Enter name">
+    </div>
+    <div class="input-group">
+      <label>Relationship Start Date:</label>
+      <input type="date" id="startDateInput">
+    </div>
+    <div class="input-group">
+      <label>Are you both staying happy?</label>
+      <select id="happyInput">
+        <option value="">Select</option>
+        <option value="yes">Yes 😊</option>
+        <option value="no">No 😔</option>
+      </select>
+    </div>
+    <button onclick="handleSubmit()">Submit</button>
+  </div>
+
+  <!-- Result Popup -->
+  <div class="popup" id="resultPopup">
+    <h2 id="popupMessage"></h2>
+    <p id="messageText"></p>
+    <p id="durationText"></p>
+    <p class="inspiration">Don’t lose hope and never give up on your relationship.stay happy with your love one❤️</p>
+    <button onclick="goBack()">Go Back</button>
+  </div>
+
+  <script>
+    function handleSubmit() {
+      const name = document.getElementById("herNameInput").value.trim();
+      const date = document.getElementById("startDateInput").value;
+      const happy = document.getElementById("happyInput").value;
+
+      if (!name || !date || !happy) {
+        alert("Please fill in all fields!");
+        return;
+      }
+
+      const startDate = new Date(date);
+      const now = new Date();
+      const diff = new Date(now - startDate);
+      const years = diff.getUTCFullYear() - 1970;
+      const months = diff.getUTCMonth();
+      const days = diff.getUTCDate() - 1;
+
+      let duration = "";
+      if (years > 0) duration += `${years} year${years > 1 ? 's' : ''}, `;
+      if (months > 0) duration += `${months} month${months > 1 ? 's' : ''}, `;
+      duration += `${days} day${days !== 1 ? 's' : ''}`;
+
+      // Show result
+      document.getElementById("formSection").classList.remove("active");
+      document.getElementById("resultPopup").classList.add("active");
+
+      if (happy === "yes") {
+        document.getElementById("popupMessage").textContent = `🎉 Congratulations, ${name}!`;
+        document.getElementById("messageText").textContent = "Wishing you both a lifetime of love and happiness 💖";
+      } else {
+        document.getElementById("popupMessage").textContent = `Hey ${name},`;
+        document.getElementById("messageText").textContent = "You can still stay together and make it work ❤️";
+      }
+
+      document.getElementById("durationText").textContent = `You've been together for ${duration}`;
+    }
+
+    function goBack() {
+      document.getElementById("resultPopup").classList.remove("active");
+      document.getElementById("formSection").classList.add("active");
+    }
+  </script>
+</body>
+</html>

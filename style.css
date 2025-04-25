@@ -1,0 +1,57 @@
+body {
+    background: linear-gradient(to right, #f78ca0, #f9748f);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.proposal-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 320px;
+}
+
+.proposal-container h1 {
+    color: #d63031;
+    margin-bottom: 1rem;
+}
+
+.proposal-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.proposal-container button {
+    background-color: #e84393;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.proposal-container button:hover {
+    background-color: #d63076;
+}
+
+#message {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    color: #2d3436;
+}
+
+.hidden {
+    display: none;
+}
